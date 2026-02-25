@@ -25,10 +25,21 @@ First, install the dependencies:
 npm install
 ```
 
-Then, run the development server:
+Then, run the development server on port 3000:
 
 ```bash
-npm run dev
+npm run dev -- --port 3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Supabase Integration
+
+This project is integrated with Supabase for:
+- **Visitor Tracking**: Automatically logs page views to `hackshield_visitors`.
+- **Early Access Signups**: Captures lead emails in `hackshield_signups`.
+- **Analytics**: Pre-configured views for monitoring conversion rates.
+
+To set up the environment, copy `.env.example` to `.env.local` and add your Supabase credentials:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
