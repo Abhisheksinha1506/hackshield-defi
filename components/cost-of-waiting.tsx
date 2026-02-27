@@ -27,7 +27,7 @@ const hacks = [
 
 export function CostOfWaiting() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border">
+    <section id="cost" className="py-16 px-4 sm:px-6 lg:px-8 border-b border-border">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
           The Cost of Waiting

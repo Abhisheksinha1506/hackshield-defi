@@ -114,14 +114,14 @@ const TopRegistrationForm = () => {
     }
 
     // Check for duplicate
-    const duplicate = await isEmailDuplicate(email); if (duplicate) {
+    if (isEmailDuplicate(email)) {
       setToast({ message: 'This email is already registered', type: 'error' })
       return
     }
 
     // Save email
-    const success = await saveEmail(email); if (success) {
-    } else { setToast({ message: 'Failed to register email. Please try again.', type: 'error' }) } setSubmitted(true);
+    saveEmail(email)
+    setSubmitted(true);
     setEmail('');
     setToast({ message: 'Successfully registered!', type: 'success' })
     
@@ -230,14 +230,14 @@ export function Waitlist() {
     }
 
     // Check for duplicate
-    const duplicate = await isEmailDuplicate(email); if (duplicate) {
+    if (isEmailDuplicate(email)) {
       setToast({ message: 'This email is already registered', type: 'error' })
       return
     }
 
     // Save email
-    const success = await saveEmail(email); if (success) {
-    } else { setToast({ message: 'Failed to register email. Please try again.', type: 'error' }) } setSubmitted(true);
+    saveEmail(email)
+    setSubmitted(true);
     setEmail('');
     setToast({ message: 'Successfully registered!', type: 'success' })
     

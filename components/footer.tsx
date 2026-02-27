@@ -7,7 +7,14 @@ export function Footer() {
             Currently in early access · Hosted on Vercel · Migrating to AWS for full launch
           </p>
           
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-wrap">
+            <a
+              href="/privacy"
+              className="text-foreground hover:text-accent transition-colors text-sm font-medium"
+            >
+              Privacy Policy
+            </a>
+            
             <a
               href="https://www.linkedin.com/in/abhisheksinha1506/"
               target="_blank"

@@ -10,8 +10,9 @@ import { Integrations } from '@/components/integrations';
 import { FAQ } from '@/components/faq';
 import { Waitlist } from '@/components/waitlist';
 import { Footer } from '@/components/footer';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { supabase } from '../lib/supabase';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, Database, Menu } from 'lucide-react';
 
 // Toast component
 const Toast = ({ message, type, onClose }: { message: string; type: 'success' | 'error'; onClose: () => void }) => {
@@ -137,8 +138,100 @@ export default function Home() {
     }
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const navHeight = 64 // Navigation bar height (h-16 = 4rem = 64px)
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - navHeight
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
     <main className="bg-background text-foreground">
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm transition-all duration-300">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+              <Database className="w-4 h-4 text-accent-foreground" />
+            </div>
+            <h1 className="text-xl font-bold text-primary">HackShield</h1>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection('register')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Early Access
+            </button>
+            <button
+              onClick={() => scrollToSection('cost')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Cost of Waiting
+            </button>
+            <button
+              onClick={() => scrollToSection('how')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              How It Works
+            </button>
+            <button
+              onClick={() => scrollToSection('comparison')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Why Signatures
+            </button>
+            <button
+              onClick={() => scrollToSection('stats')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Database
+            </button>
+            <button
+              onClick={() => scrollToSection('integrations')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Integrations
+            </button>
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              FAQ
+            </button>
+            <button
+              onClick={() => scrollToSection('waitlist')}
+              className="text-sm font-medium transition-colors hover:text-accent text-muted-foreground"
+            >
+              Waitlist
+            </button>
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-accent/10 transition-colors"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+      </nav>
       {/* Toast Notification */}
       {toast && (
         <Toast
@@ -148,9 +241,24 @@ export default function Home() {
         />
       )}
 
-      {/* Top Registration Form */}
-      <Hero />
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-secondary/20 border-b border-border">
+      {/* Hero Section */}
+      <section id="hero" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-border">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-pretty">
+            <span className="text-accent">$625M.</span>
+            {' '}<span className="text-accent">$117M.</span>
+            {' '}<span className="text-accent">$60M.</span>
+          </h1>
+          <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+            All had detectable on-chain patterns before funds left.
+          </p>
+          <p className="text-lg text-foreground mb-2 leading-relaxed max-w-2xl mx-auto">
+            HackShield detects DeFi exploits in real-time using exploit signatures from actual replayed PoCs, not statistical anomalies. Lower false positive rate. Specific alerts. Actionable intelligence.
+          </p>
+        </div>
+      </section>
+      {/* Registration Section */}
+      <section id="register" className="py-8 px-4 sm:px-6 lg:px-8 bg-secondary/20 border-b border-border">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-3">
             Early Access Registration
